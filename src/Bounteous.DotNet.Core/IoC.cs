@@ -59,9 +59,7 @@ public static class IoC
         public static Singleton Instance { get; private set; } = new();
 
         public static void ResetInstance()
-        {
-            Instance = new Singleton();
-        }
+            => Instance = new Singleton();
 
         internal TService Find<TService>() => container.GetRequiredService<TService>();
         internal IServiceScope NewScope() => container.CreateScope();

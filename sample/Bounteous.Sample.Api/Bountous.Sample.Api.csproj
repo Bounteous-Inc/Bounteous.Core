@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Bounteous.DotNet.Core\Bounteous.DotNet.Core.csproj" />
+        <ProjectReference Include="..\..\src\Bounteous.Core\Bounteous.Core.csproj" />
     </ItemGroup>
 
 </Project>

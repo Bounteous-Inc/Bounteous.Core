@@ -1,4 +1,4 @@
-using Bounteous.DotNet.Core;
+using Bounteous.Core;
 
 namespace Bountous.Sample.Api;
 

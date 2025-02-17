@@ -1,7 +1,4 @@
-using System;
-using Bounteous.DotNet.Core;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Bounteous.Core;
 using Serilog;
 
 namespace Bountous.Sample.Api;

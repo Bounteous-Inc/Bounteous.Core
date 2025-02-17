@@ -1,4 +1,4 @@
-name: Publish Bounteous.DotNet.Core
+name: Bounteous.DotNet.Core
 
 on:
   pull_request:

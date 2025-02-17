@@ -1,4 +1,4 @@
-name: Bounteous.DotNet.Core
+name: Bounteous.Core
 
 on:
   pull_request:
@@ -10,8 +10,8 @@ jobs:
     if: github.event.pull_request.merged == true
     uses: Bounteous-Inc/bounteous-dotnet-common-workflows/.github/workflows/build-and-publish-to-nuget.yml@main
     with:
-      csproj-path: './src/Bounteous.DotNet.Core/Bounteous.DotNet.Core.csproj'
-      nuget-package-name: 'bounteous.dotnet.core'
+      csproj-path: './src/Bounteous.Core/Bounteous.Core.csproj'
+      nuget-package-name: 'bounteous.core'
       dotnet-version: '8.0.x'
       release-path: 'net8.0'
     secrets:

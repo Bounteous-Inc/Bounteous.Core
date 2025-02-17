@@ -3,7 +3,7 @@
     <PropertyGroup>
         <PackageId>Bounteous.DotNet.Core</PackageId>
         <Version>0.0.3-prelease-002</Version>
-        <Authors>Bounetous</Authors>
+        <Authors>Bounteous</Authors>
         <Company>Xerris Inc.</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <LangVersion>latest</LangVersion>

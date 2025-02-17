@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <PackageId>Bounteous.Core</PackageId>
-        <Version>0.0.3-prelease-002</Version>
+        <Version>0.0.1</Version>
         <Authors>Bounteous</Authors>
         <Company>Xerris Inc.</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

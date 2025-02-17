@@ -3,12 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Bounteous.DotNet.Core;
 
-public sealed class ConfigureServiceCollection
+public sealed class ConfigureServiceCollection(IServiceCollection collection)
 {
-    private readonly IServiceCollection collection;
-
-    public ConfigureServiceCollection(IServiceCollection collection) => this.collection = collection;
-
-
     public void Initialize() => collection.AddSingleton<ICache>(new WaitToFinishMemoryCache());
 }

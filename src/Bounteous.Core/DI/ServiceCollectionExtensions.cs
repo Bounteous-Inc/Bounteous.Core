@@ -9,11 +9,10 @@ namespace Bounteous.Core.DI;
 
 public static class ServiceCollectionExtensions
 {
-    private static void Replace<TService, TImplementation>(
+    private static void Replace<TService>(
         this IServiceCollection services,
         Action<IServiceCollection> addMethod)
         where TService : class
-        where TImplementation : class, TService
     {
         var descriptor = services.FirstOrDefault(d => d.ServiceType == typeof(TService));
         if (descriptor != null)
@@ -24,17 +23,21 @@ public static class ServiceCollectionExtensions
     public static void ReplaceSingleton<TService, TImplementation>(this IServiceCollection services)
         where TService : class
         where TImplementation : class, TService
-        => services.Replace<TService, TImplementation>(s => s.AddSingleton<TService, TImplementation>());
+        => services.Replace<TService>(s => s.AddSingleton<TService, TImplementation>());
+
+    public static void ReplaceSingleton<TService>(this IServiceCollection services, TService implementation)
+        where TService : class
+        => services.Replace<TService>(x => x.AddSingleton(implementation));
 
     public static void ReplaceScoped<TService, TImplementation>(this IServiceCollection services)
         where TService : class
         where TImplementation : class, TService
-        => services.Replace<TService, TImplementation>(s => s.AddScoped<TService, TImplementation>());
+        => services.Replace<TService>(s => s.AddScoped<TService, TImplementation>());
 
     public static void ReplaceTransient<TService, TImplementation>(this IServiceCollection services)
         where TService : class
         where TImplementation : class, TService
-        => services.Replace<TService, TImplementation>(s => s.AddTransient<TService, TImplementation>());
+        => services.Replace<TService>(s => s.AddTransient<TService, TImplementation>());
 
     private static void AddDefault<TService, TImplementation>(
         this IServiceCollection services, Action<IServiceCollection> addMethod)

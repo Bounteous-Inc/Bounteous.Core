@@ -1,23 +1,29 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Linq;
+using System.Text.Json;
 
 namespace Bounteous.Core.Serialization;
 
-public class LongNameContractResolver : DefaultContractResolver
+public class LongNameContractResolver : JsonNamingPolicy
 {
-    protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+    public override string ConvertName(string name)
     {
-        // Let the base class create all the JsonProperties 
-        // using the short names
-        var list = base.CreateProperties(type, memberSerialization);
-
-        // Now inspect each property and replace the 
-        // short name with the real property name
-        foreach (var prop in list)
-            prop.PropertyName = prop.UnderlyingName;
-
-        return list;
+        // Return the original property name
+        return name;
     }
+
+    public IList<JsonProperty> CreateProperties(Type type, JsonSerializerOptions options)
+    {
+        // Create properties using the default naming policy
+
+        return type.GetProperties().Select(property => new JsonProperty
+            { PropertyName = property.Name, UnderlyingName = property.Name }).ToList();
+    }
+}
+
+public class JsonProperty
+{
+    public string PropertyName { get; set; }
+    public string UnderlyingName { get; set; }
 }

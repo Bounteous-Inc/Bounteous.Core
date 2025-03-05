@@ -1,3 +1,4 @@
+using Bounteous.Core.TestSupport;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -6,10 +7,7 @@ namespace Bounteous.Core.Test.DI
 {
     public class IoCTests
     {
-        public IoCTests()
-        {
-            IoC.Reset();
-        }
+        public IoCTests() => IoC.Reset();
 
         [Fact]
         public void ConfigureServiceCollection_ShouldSetServiceCollectionProvider()
@@ -80,12 +78,10 @@ namespace Bounteous.Core.Test.DI
             IoC.Reset(services);
 
             // Act
-            using (var scope = IoC.CreateScope())
-            {
-                // Assert
-                scope.Should().NotBeNull();
-                scope.ServiceProvider.Should().NotBeNull();
-            }
+            using var scope = IoC.CreateScope();
+            // Assert
+            scope.Should().NotBeNull();
+            scope.ServiceProvider.Should().NotBeNull();
         }
     }
 }

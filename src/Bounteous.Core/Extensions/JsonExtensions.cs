@@ -1,23 +1,19 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Bounteous.Core.Extensions;
 
 public static class JsonExtensions
 {
-    private static readonly DefaultContractResolver ContractResolver = new()
+    private static readonly JsonSerializerOptions Options = new()
     {
-        NamingStrategy = new CamelCaseNamingStrategy()
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
     };
 
-    private static readonly JsonSerializerSettings Settings = new()
-    {
-        ContractResolver = ContractResolver
-    };
+    public static string ToJson<T>(this T item, JsonSerializerOptions options = null)
+        => JsonSerializer.Serialize(item, options ?? Options);
 
-    public static string ToJson<T>(this T item, JsonSerializerSettings settings = null)
-        => JsonConvert.SerializeObject(item, settings ?? Settings);
-
-    public static T FromJson<T>(this string data, JsonSerializerSettings settings = null)
-        => JsonConvert.DeserializeObject<T>(data, settings ?? Settings);
+    public static T FromJson<T>(this string data, JsonSerializerOptions options = null)
+        => JsonSerializer.Deserialize<T>(data, options ?? Options);
 }

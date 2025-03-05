@@ -70,4 +70,9 @@ public static class IoC
             return service ?? new TDefault();
         }
     }
+
+    public static void OnPostRegistration(Func<object, bool> func)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Bounteous.Core.Test
 {
-    public class ApplicationStartup : IAppStartup
+    public class IoCStartup : IAppStartup
     {
         public IConfiguration StartUp(IServiceCollection collection)
         {

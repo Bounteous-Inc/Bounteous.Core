@@ -39,6 +39,8 @@ namespace Bounteous.Core.Test.Startup
         [Fact]
         public void MyService()
         {
+            Validate.Begin().IsTrue(true, "true");
+            
             var service = IoC.Resolve<IService>();
             service.Should().NotBeNull();
             IoC.Resolve<IAddMe>().Should().BeOfType<AddMe>();

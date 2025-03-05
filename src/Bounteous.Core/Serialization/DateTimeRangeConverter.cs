@@ -1,30 +1,33 @@
-using System;
-using Bounteous.Core.Extensions;
 using Bounteous.Core.Utilities;
-using Newtonsoft.Json;
 
 namespace Bounteous.Core.Serialization;
 
-public class DateTimeRangeConverter : JsonConverter
+using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+public class DateTimeRangeConverter : JsonConverter<DateTimeRange>
 {
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void Write(Utf8JsonWriter writer, DateTimeRange value, JsonSerializerOptions options)
     {
-        if (!(value is DateTimeRange range)) return;
-        writer.WriteValue(new DateTimeRangeDto(range).ToJson());
+        if (value == null) return;
+        writer.WriteStringValue(JsonSerializer.Serialize(new DateTimeRangeDto(value)));
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override DateTimeRange Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (reader.Value == null) return null;
-        if (string.IsNullOrWhiteSpace((string)reader.Value) ||
-            IsEqual(reader.Value.ToString(), "null")) return null;
-        var fromJson = reader.Value.ToString().FromJson<DateTimeRangeDto>();
+        if (reader.TokenType == JsonTokenType.Null) return null;
+        if (reader.TokenType != JsonTokenType.String) throw new JsonException();
+
+        var json = reader.GetString();
+        if (string.IsNullOrWhiteSpace(json) || IsEqual(json, "null")) return null;
+
+        var fromJson = JsonSerializer.Deserialize<DateTimeRangeDto>(json);
         return new DateTimeRange(fromJson.Start, fromJson.End);
     }
 
-    public override bool CanConvert(Type objectType)
-        => objectType == typeof(DateTimeRange);
-
+    public override bool CanConvert(Type typeToConvert)
+        => typeToConvert == typeof(DateTimeRange);
 
     private static bool IsEqual(string condition, string value)
         => string.Equals(condition, value, StringComparison.InvariantCultureIgnoreCase);

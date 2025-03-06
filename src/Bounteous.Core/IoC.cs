@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Bounteous.Core.DI;
 using Bounteous.Core.Logging;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,8 @@ public static class IoC
     }
 
     public static TService Resolve<TService>() => Singleton.Instance.Find<TService>();
+    
+    public static IEnumerable<TService> ResolveAll<TService>() => Singleton.Instance.FindAll<TService>();
 
     public static TService TryResolve<TService, TDefault>() where TDefault : TService, new()
         => Singleton.Instance.FindOrDefault<TService, TDefault>();
@@ -63,6 +66,7 @@ public static class IoC
 
         internal TService Find<TService>() => container.GetRequiredService<TService>();
         internal IServiceScope NewScope() => container.CreateScope();
+        internal IEnumerable<TService> FindAll<TService>() => container.GetServices<TService>();
 
         public TService FindOrDefault<TService, TDefault>() where TDefault : TService, new()
         {

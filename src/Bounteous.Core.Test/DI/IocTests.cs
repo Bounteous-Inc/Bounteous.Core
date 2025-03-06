@@ -1,3 +1,4 @@
+using System.Linq;
 using Bounteous.Core.TestSupport;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
@@ -83,5 +84,25 @@ namespace Bounteous.Core.Test.DI
             scope.Should().NotBeNull();
             scope.ServiceProvider.Should().NotBeNull();
         }
+        
+        [Fact]
+        public void FindAll_ShouldReturnAllImplementationsOfIMyService()
+        {
+            // Arrange
+            var services = new ServiceCollection();
+            services.AddTransient<IService, ServiceImplementation>();
+            services.AddTransient<IService, DefaultServiceImplementation>();
+            var serviceProvider = services.BuildServiceProvider();
+
+            // Act
+            var myServices = serviceProvider.GetServices<IService>();
+
+            // Assert
+            Assert.NotNull(myServices);
+            Assert.Equal(2, myServices.Count());
+            Assert.Contains(myServices, service => service is ServiceImplementation);
+            Assert.Contains(myServices, service => service is DefaultServiceImplementation);
+        }
+        
     }
 }

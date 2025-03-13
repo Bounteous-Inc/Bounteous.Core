@@ -1,13 +1,12 @@
-## Bounteous.DotNet.Core
+# Bouneous.Core
 
-A collection of reusable components that assist in speeding up delivery of .Net back-end applications.
+Bouneous.Core is a .NET library that provides various utilities and extensions to simplify common tasks in .NET applications. This library includes dependency injection (IoC) helpers, logging utilities, and more.
 
+Installation
 
-### Dependency Injection
+You can install the package via NuGet:
 
-* TODO
+dotnet add package Bouneous.Core
+```Bounteous.Core
 
-
-### Validation
-
-* TODO
+[IoC - Service Collection Utilities](./docs/IoC.md)

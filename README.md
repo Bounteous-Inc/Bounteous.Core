@@ -8,4 +8,7 @@ You can install the package via NuGet:
 dotnet add package Bounteous.Core
 
 ## IoC Service Collection utilities
+
 see documentation [here](docs/IoC.md)
+
+.

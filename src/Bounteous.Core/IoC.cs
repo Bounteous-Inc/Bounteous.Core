@@ -49,8 +49,8 @@ public static class IoC
         {
             var collection = serviceCollectionProvider() ?? new ServiceCollection();
             var startup = AppDomain.CurrentDomain.GetAssemblies().GetImplementingType<IAppStartup>();
-            var configuration = startup.StartUp(collection);
-            startup.InitializeLogging(configuration, LogStartup.Initialize);
+            startup.InitializeLogging(() => LogStartup.Initialize(startup));
+            startup.StartUp(collection);
 
             // Register all modules with priority
             AppDomain.CurrentDomain.GetAssemblies().RegisterModules(collection);

@@ -14,14 +14,11 @@ public class AppStartUp : IAppStartup
         collection.AutoRegister(GetType().Assembly);
 
         return builder.Configuration;
-        ;
     }
 
-    public void InitializeLogging(IConfiguration configuration, Action<IConfiguration> defaultConfig)
-    {
-        Log.Logger = new LoggerConfiguration()
+    public void InitializeLogging(Action defaultConfig)
+        => Log.Logger = new LoggerConfiguration()
             .WriteTo.Console(outputTemplate:
                 "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
             .CreateLogger();
-    }
 }

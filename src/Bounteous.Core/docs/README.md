@@ -9,6 +9,6 @@ dotnet add package Bounteous.Core
 
 ## IoC Service Collection utilities
 
-see documentation [here](docs/IoC.md)
+see documentation [here](IoC.md)
 
 .

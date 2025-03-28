@@ -21,5 +21,8 @@ namespace Bounteous.Core.Test
 
         public void InitializeLogging(IConfiguration configuration, Action<IConfiguration> defaultConfig)
             => defaultConfig(configuration);
+
+        public void InitializeLogging(Action defaultConfig)
+            => defaultConfig();
     }
 }

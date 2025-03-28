@@ -9,6 +9,12 @@ public static class LogStartup
     private static readonly object Mutex = new();
     private static bool initialized;
 
+    public static void Initialize(IAppStartup _)
+        => Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console(outputTemplate:
+                "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+            .CreateLogger();
+    
     public static void Initialize(IConfiguration configuration)
     {
         if (initialized) return;

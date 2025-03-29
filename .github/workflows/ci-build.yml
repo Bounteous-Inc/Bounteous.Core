@@ -13,4 +13,3 @@ jobs:
       release-path: 'net8.0'
       build-configuration: 'Release'
       artifact-name: 'build-output'
-      solution-path: '../..'

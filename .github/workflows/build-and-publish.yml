@@ -11,7 +11,6 @@ jobs:
     uses: Bounteous-Inc/bounteous-dotnet-common-workflows/.github/workflows/build-and-publish-to-nuget.yml@main
     with:
       csproj-path: './src/Bounteous.Core/Bounteous.Core.csproj'
-      readme-path: './src/Bounteous.Core/docs/README.md'
       nuget-package-name: 'bounteous.core'
       dotnet-version: '8.0.x'
       release-path: 'net8.0'

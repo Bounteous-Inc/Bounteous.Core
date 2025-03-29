@@ -7,7 +7,7 @@
         <Company>Xerris Inc.</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <LangVersion>latest</LangVersion>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReadmeFile>docs/README.md</PackageReadmeFile>
         <TargetFramework>net8.0</TargetFramework>
         <AssemblyName>Bounteous.Core</AssemblyName>
         <RootNamespace>Bounteous.Core</RootNamespace>
@@ -33,21 +33,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="README.md" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Update="docs\README.md">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="docs\IoC.md" />
-      <Content Include="docs\IoC.md">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="docs\README.md" />
-      <Content Include="docs\README.md">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+        <None Update="docs/README.md" Pack="true" PackagePath="" />
+        <None Include="docs/IoC.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
 </Project>

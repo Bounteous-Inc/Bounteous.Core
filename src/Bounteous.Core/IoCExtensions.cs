@@ -24,10 +24,15 @@ public static class IoCExtensions
 
     public static IServiceCollection AutoRegisterAll<T>(this IServiceCollection collection, Assembly assembly)
     {
-        FindAllFor(typeof(T), assembly).ForEach(each => ServiceCollectionServiceExtensions.AddSingleton(collection, typeof(T), (Type)each));
+        FindAllFor(typeof(T), assembly).ForEach(each => collection.AddSingleton(typeof(T), each));
         return collection;
     }
 
     private static IEnumerable<Type> FindAllFor(Type type, Assembly assembly)
-        => assembly.GetTypes().Where(tt => tt.IsClass && !tt.IsAbstract && type.IsAssignableFrom(tt));
+        => assembly.GetTypes()
+            .Where(tt => tt.IsClass && !tt.IsAbstract && type.IsAssignableFrom(tt)
+                         && !HasIgnoreIocRegistrationAttribute(tt));
+    
+    private static bool HasIgnoreIocRegistrationAttribute(Type type)
+        => type.GetCustomAttributes(typeof(IgnoreIocRegistrationAttribute), false).Any();
 }

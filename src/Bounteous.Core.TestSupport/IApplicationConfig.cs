@@ -9,5 +9,5 @@ public interface IApplicationConfig : IApplicationConfigBase
 public class ApplicationConfig : IApplicationConfig
 {
     public string AllowedHosts { get; set; }
-    public string ConnectionString { get; set; }
+    public string ConnectionString { get; set; } = "connectMe";
 }

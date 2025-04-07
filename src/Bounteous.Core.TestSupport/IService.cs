@@ -1,16 +1,18 @@
-﻿using System;
+﻿namespace Bounteous.Core.TestSupport;
 
-namespace Bounteous.Core.TestSupport;
+public interface IService {}
+public class ServiceImplementation : IService { }
+public class DefaultServiceImplementation : IService { }
+public class OriginalServiceImplementation : IService { } 
+public class NewServiceImplementation : IService { }
 
-public interface IService
-{
-    void DoIt();
-}
+public interface IHaveNoConcreteClass {}
 
-public class MyService : IService
-{
-    public void DoIt()
-    {
-        Console.WriteLine("Hi");
-    }
-}
+
+public interface IAutoRegisterAll {}
+public class AutoRegister1 : IAutoRegisterAll {}
+public class AutoRegister2 : IAutoRegisterAll {}
+public class AutoRegister3 : IAutoRegisterAll {}
+
+[IgnoreIocRegistration("should be ignored")]
+public class AutoRegisterIgnored : IAutoRegisterAll {}

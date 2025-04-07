@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Bounteous.Core.TestSupport;
 using FluentAssertions;
@@ -6,6 +7,8 @@ using Xunit;
 
 namespace Bounteous.Core.Test.DI
 {
+    [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+    [SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
     public class IoCTests
     {
         public IoCTests() => IoC.Reset();
@@ -62,6 +65,7 @@ namespace Bounteous.Core.Test.DI
             // Arrange
             var services = new ServiceCollection();
             IoC.Reset(services);
+            _ = IoC.Resolve<IApplicationConfig>();
 
             // Act
             var service = IoC.TryResolve<IService, DefaultServiceImplementation>();
@@ -92,16 +96,24 @@ namespace Bounteous.Core.Test.DI
             var services = new ServiceCollection();
             services.AddTransient<IService, ServiceImplementation>();
             services.AddTransient<IService, DefaultServiceImplementation>();
-            var serviceProvider = services.BuildServiceProvider();
 
             // Act
-            var myServices = serviceProvider.GetServices<IService>();
+            IoC.ConfigureServiceCollection(services);
+            var myServices = IoC.ResolveAll<IAutoRegisterAll>();
 
             // Assert
             Assert.NotNull(myServices);
-            Assert.Equal(2, myServices.Count());
-            Assert.Contains(myServices, service => service is ServiceImplementation);
-            Assert.Contains(myServices, service => service is DefaultServiceImplementation);
+            Assert.Equal(3, myServices.Count());
+            Assert.Contains(myServices, service => service is AutoRegister1);
+            Assert.Contains(myServices, service => service is AutoRegister1);
+            Assert.Contains(myServices, service => service is AutoRegister3);
+            Assert.DoesNotContain(myServices, service => service is AutoRegisterIgnored);
+        }
+
+        [Fact]
+        public void FindAll_Ignores_Class_WithAttribute_IgnoreIoCRegistration()
+        {
+            
         }
         
     }

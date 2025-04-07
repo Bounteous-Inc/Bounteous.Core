@@ -14,8 +14,7 @@ namespace Bounteous.Core.Test
 
             collection.AddSingleton<IApplicationConfig>(appConfig);
             collection.AddSingleton<IAddMe, AddMe>();
-
-            collection.AutoRegister(GetType().Assembly).AutoRegister(typeof(IAddMe).Assembly);
+            collection.AutoRegister(GetType().Assembly);
             return builder.Configuration;
         }
 

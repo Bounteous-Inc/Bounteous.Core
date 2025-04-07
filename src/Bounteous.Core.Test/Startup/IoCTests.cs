@@ -3,14 +3,22 @@ using Bounteous.Core.TestSupport;
 using Bounteous.Core.Validations;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyModel;
 using Xunit;
 
 namespace Bounteous.Core.Test.Startup
 {
     public class IoCTests : IDisposable
     {
-        public IoCTests() =>
-            Environment.SetEnvironmentVariable(nameof(IApplicationConfig.ConnectionString), "connectMe"); public void Dispose() => Environment.SetEnvironmentVariable(nameof(IApplicationConfig.ConnectionString), null);
+        private readonly ServiceCollection collection;
+        public IoCTests()
+        {
+            collection = new ServiceCollection();
+            IoC.ConfigureServiceCollection(collection);
+        }
+
+        public void Dispose()
+            => collection.Clear();
 
         [Fact]
         public void ApplicationConfig()
@@ -32,7 +40,6 @@ namespace Bounteous.Core.Test.Startup
             IoC.ConfigureServiceCollection(privateCollection);
 
             IoC.Resolve<IApplicationConfig>().Should().BeOfType<ApplicationConfig>();
-            IoC.Resolve<IService>().Should().BeOfType<MyService>();
             IoC.Resolve<IAddMe>().Should().BeOfType<AddMe>();
         }
 
@@ -40,8 +47,9 @@ namespace Bounteous.Core.Test.Startup
         public void MyService()
         {
             Validate.Begin().IsTrue(true, "true");
+            collection.AddSingleton<IAddMe, AddMe>();
             
-            var service = IoC.Resolve<IService>();
+            var service = IoC.Resolve<IAddMe>();
             service.Should().NotBeNull();
             IoC.Resolve<IAddMe>().Should().BeOfType<AddMe>();
         }
@@ -49,8 +57,10 @@ namespace Bounteous.Core.Test.Startup
         [Fact]
         public void ResolveShouldReturnTheSameInstance()
         {
-            var service = IoC.Resolve<IService>();
-            IoC.Resolve<IService>().Should().BeSameAs(service);
+            collection.AddSingleton<IDependency, DefaultDependency>();
+            
+            var service = IoC.Resolve<IDependency>();
+            IoC.Resolve<IDependency>().Should().BeSameAs(service);
         }
 
         [Fact]

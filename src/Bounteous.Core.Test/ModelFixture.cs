@@ -17,7 +17,7 @@ namespace Bounteous.Core.Test
         public void Run() => FactoryGirl.Clear();
     }
 
-    [CollectionDefinition("Test Models")]
+    [CollectionDefinition("Tests")]
     public class ModelCollection : ICollectionFixture<ModelFixture>
     {
     }

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Bounteous.Core.Test.Core.Commands
 {
-    [Collection("base")]
+    [Collection("Tests")]
     public class CompositeAwaitedCommandTest
     {
         private int count;

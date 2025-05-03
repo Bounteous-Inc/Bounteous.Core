@@ -4,7 +4,7 @@ using Bounteous.Core.Extensions;
 using Bounteous.Core.Test.Factories;
 using Xunit;
 
-namespace Bounteous.Core.Test
+namespace Bounteous.Core.Test.Fixtures
 {
     public class ModelFixture : IDisposable
     {

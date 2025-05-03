@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Bounteous.Core.Test.Core.Extensions
 {
-    [Collection("Test Models")]
+    [Collection("Tests")]
     public class UtilityExtensionsTest
     {
         [Fact]

@@ -2,7 +2,7 @@ using Bounteous.Core.Commands;
 using Bounteous.Core.Test.Factories;
 using Bounteous.Core.Test.Model;
 
-namespace Bounteous.Core.Test
+namespace Bounteous.Core.Test.Fixtures
 {
     public class TestModelFactory : ICommand
     {

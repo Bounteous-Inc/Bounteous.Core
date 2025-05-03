@@ -12,9 +12,7 @@ namespace Bounteous.Core.Test.Utilities
         public void TracePerformance_Action_ExecutesSuccessfully()
         {
             var executed = false;
-
-            new Action(() => { executed = true; }).TracePerformance("Test Action");
-
+            this.TracePerformance(() => { executed = true; }, "Test Action");
             executed.Should().BeTrue();
         }
 
@@ -22,9 +20,7 @@ namespace Bounteous.Core.Test.Utilities
         public void TracePerformance_Func_ReturnsExpectedResult()
         {
             const int expected = 42;
-
-            var result = new Func<int>(() => expected).TracePerformance("Test Func");
-
+            var result = this.TracePerformance(() => expected, "Tes Func");
             result.Should().Be(expected);
         }
 
@@ -33,12 +29,12 @@ namespace Bounteous.Core.Test.Utilities
         {
             var executed = false;
 
-            await new Func<Task>(async () =>
+            await this.TracePerformanceAsync(async () =>
             {
                 await Task.Delay(10);
                 executed = true;
-            }).TracePerformanceAsync("Test Async Task");
-
+            }, "Test Task");
+            
             executed.Should().BeTrue();
         }
 
@@ -47,33 +43,34 @@ namespace Bounteous.Core.Test.Utilities
         {
             const int expected = 99;
 
-            var result = await new Func<Task<int>>(async () =>
-            {
-                await Task.Delay(10);
-                return expected;
-            }).TracePerformanceAsync("Test Async Func");
-
+            var result = await this.TracePerformanceAsync(async () =>
+                {
+                    await Task.Delay(10);
+                   return expected;
+                }, "Test Task");
+            
             Assert.Equal(expected, result);
         }
 
         [Fact]
         public void TracePerformance_Action_ThrowsOnNull()
-            =>
-                Assert.Throws<ArgumentNullException>(() => ((Action)null).TracePerformance("Null Action"));
+            => Assert.Throws<ArgumentNullException>(() 
+                => this.TracePerformance(null, "Null Action"));
 
         [Fact]
         public void TracePerformance_Func_ThrowsOnNull()
-            => Assert.Throws<ArgumentNullException>(() => ((Func<int>)null).TracePerformance("Null Func"));
+            => Assert.Throws<ArgumentNullException>(() 
+                => this.TracePerformance<int>(null, "Null Func"));
 
         [Fact]
         public async Task TracePerformanceAsync_Task_ThrowsOnNull()
             => await Assert.ThrowsAsync<ArgumentNullException>(()
-                => ((Func<Task>)null).TracePerformanceAsync("Null Async Task"));
+                => this.TracePerformanceAsync(null, "Null Async Task"));
 
 
         [Fact]
         public async Task TracePerformanceAsync_TaskOfT_ThrowsOnNull()
             => await Assert.ThrowsAsync<ArgumentNullException>(()
-                => ((Func<Task<int>>)null).TracePerformanceAsync("Null Async Func"));
+                => this.TracePerformanceAsync<int>(null, "Null Async Func"));
     }
 }

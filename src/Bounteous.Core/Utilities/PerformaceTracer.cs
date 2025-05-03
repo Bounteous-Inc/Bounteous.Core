@@ -14,7 +14,7 @@ public static class PerformanceTracer
     public static void TracePerformance(this object _, Action action, string taskName)
     {
         ArgumentNullException.ThrowIfNull(action);
-        taskName = taskName.UseDefault("UnnamedTask");
+        taskName = taskName.UseDefault(UnnamedTask);
 
         Log.Information("Starting task: {TaskName}", taskName);
         
@@ -29,7 +29,7 @@ public static class PerformanceTracer
     public static T TracePerformance<T>(this object _, Func<T> func, string taskName)
     {
         ArgumentNullException.ThrowIfNull(func);
-        taskName = taskName.UseDefault("UnnamedTask");
+        taskName = taskName.UseDefault(UnnamedTask);
 
         Log.Information("Starting task: {TaskName}", taskName);
         
@@ -46,7 +46,7 @@ public static class PerformanceTracer
     public static async Task TracePerformanceAsync(this object _, Func<Task> taskFunc, string taskName)
     {
         ArgumentNullException.ThrowIfNull(taskFunc);
-        taskName = taskName.UseDefault("UnnamedTask");
+        taskName = taskName.UseDefault(UnnamedTask);
 
         Log.Information("Starting async task: {TaskName}", taskName);
 
@@ -61,7 +61,7 @@ public static class PerformanceTracer
     public static async Task<T> TracePerformanceAsync<T>(this object _, Func<Task<T>> taskFunc, string taskName)
     {
         ArgumentNullException.ThrowIfNull(taskFunc);
-        taskName = taskName.UseDefault("UnnamedTask");
+        taskName = taskName.UseDefault(UnnamedTask);
 
         Log.Information("Starting async task: {TaskName}", taskName);
         

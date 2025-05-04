@@ -12,7 +12,7 @@ namespace Bounteous.Core.Test.Utilities
         public void TracePerformance_Action_ExecutesSuccessfully()
         {
             var executed = false;
-            this.TracePerformance(() => { executed = true; }, "Test Action");
+            this.PerformanceTrace(() => { executed = true; }, "Test Action");
             executed.Should().BeTrue();
         }
 
@@ -20,7 +20,7 @@ namespace Bounteous.Core.Test.Utilities
         public void TracePerformance_Func_ReturnsExpectedResult()
         {
             const int expected = 42;
-            var result = this.TracePerformance(() => expected, "Tes Func");
+            var result = this.PerformanceTrace(() => expected, "Tes Func");
             result.Should().Be(expected);
         }
 
@@ -29,7 +29,7 @@ namespace Bounteous.Core.Test.Utilities
         {
             var executed = false;
 
-            await this.TracePerformanceAsync(async () =>
+            await this.PerformanceTraceAsync(async () =>
             {
                 await Task.Delay(10);
                 executed = true;
@@ -43,7 +43,7 @@ namespace Bounteous.Core.Test.Utilities
         {
             const int expected = 99;
 
-            var result = await this.TracePerformanceAsync(async () =>
+            var result = await this.PerformanceTraceAsync(async () =>
                 {
                     await Task.Delay(10);
                    return expected;
@@ -55,22 +55,22 @@ namespace Bounteous.Core.Test.Utilities
         [Fact]
         public void TracePerformance_Action_ThrowsOnNull()
             => Assert.Throws<ArgumentNullException>(() 
-                => this.TracePerformance(null, "Null Action"));
+                => this.PerformanceTrace(null, "Null Action"));
 
         [Fact]
         public void TracePerformance_Func_ThrowsOnNull()
             => Assert.Throws<ArgumentNullException>(() 
-                => this.TracePerformance<int>(null, "Null Func"));
+                => this.PerformanceTrace<int>(null, "Null Func"));
 
         [Fact]
         public async Task TracePerformanceAsync_Task_ThrowsOnNull()
             => await Assert.ThrowsAsync<ArgumentNullException>(()
-                => this.TracePerformanceAsync(null, "Null Async Task"));
+                => this.PerformanceTraceAsync(null, "Null Async Task"));
 
 
         [Fact]
         public async Task TracePerformanceAsync_TaskOfT_ThrowsOnNull()
             => await Assert.ThrowsAsync<ArgumentNullException>(()
-                => this.TracePerformanceAsync<int>(null, "Null Async Func"));
+                => this.PerformanceTraceAsync<int>(null, "Null Async Func"));
     }
 }

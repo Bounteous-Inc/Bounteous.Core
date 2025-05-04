@@ -17,8 +17,14 @@ namespace Bounteous.Core.Test.Core.Commands
         [Fact]
         public async Task CanRunMultipleCommands()
         {
-            await new TestWaitedCommand(() => count = 5)
-                .Then(new TestWaitedCommand(() => count = 10))
+            await new TestWaitedCommand(() =>
+                {
+                    count = 5;
+                })
+                .Then(new TestWaitedCommand(() =>
+                {
+                    count = 10;
+                }))
                 .RunAsync();
             count.Should().Be(10);
         }

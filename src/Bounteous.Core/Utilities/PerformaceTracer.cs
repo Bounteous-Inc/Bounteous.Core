@@ -11,7 +11,7 @@ public static class PerformanceTracer
 {
     private const string UnnamedTask = "Unnamed Task";
     
-    public static void TracePerformance(this object _, Action action, string taskName)
+    public static void PerformanceTrace(this object _, Action action, string taskName)
     {
         ArgumentNullException.ThrowIfNull(action);
         taskName = taskName.UseDefault(UnnamedTask);
@@ -26,7 +26,7 @@ public static class PerformanceTracer
             stopwatch.ElapsedMilliseconds);
     }
 
-    public static T TracePerformance<T>(this object _, Func<T> func, string taskName)
+    public static T PerformanceTrace<T>(this object _, Func<T> func, string taskName)
     {
         ArgumentNullException.ThrowIfNull(func);
         taskName = taskName.UseDefault(UnnamedTask);
@@ -43,7 +43,7 @@ public static class PerformanceTracer
         return result;
     }
 
-    public static async Task TracePerformanceAsync(this object _, Func<Task> taskFunc, string taskName)
+    public static async Task PerformanceTraceAsync(this object _, Func<Task> taskFunc, string taskName)
     {
         ArgumentNullException.ThrowIfNull(taskFunc);
         taskName = taskName.UseDefault(UnnamedTask);
@@ -58,7 +58,7 @@ public static class PerformanceTracer
             stopwatch.ElapsedMilliseconds);
     }
 
-    public static async Task<T> TracePerformanceAsync<T>(this object _, Func<Task<T>> taskFunc, string taskName)
+    public static async Task<T> PerformanceTraceAsync<T>(this object _, Func<Task<T>> taskFunc, string taskName)
     {
         ArgumentNullException.ThrowIfNull(taskFunc);
         taskName = taskName.UseDefault(UnnamedTask);

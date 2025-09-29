@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Bounteous.Core.Time;
 using Bounteous.Core.Utilities;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace Bounteous.Core.Test.Utilities

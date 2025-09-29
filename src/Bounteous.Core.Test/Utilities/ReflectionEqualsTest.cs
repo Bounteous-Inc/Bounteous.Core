@@ -2,7 +2,7 @@ using System;
 using Bounteous.Core.Test.Factories;
 using Bounteous.Core.Test.Model;
 using Bounteous.Core.Utilities;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace Bounteous.Core.Test.Utilities

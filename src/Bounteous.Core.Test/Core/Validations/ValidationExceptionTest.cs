@@ -1,5 +1,5 @@
 using Bounteous.Core.Validations;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.CSharp.RuntimeBinder;
 using Xunit;
 

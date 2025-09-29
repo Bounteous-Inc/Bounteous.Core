@@ -1,6 +1,6 @@
 using System;
+using AwesomeAssertions;
 using Bounteous.Core.Extensions;
-using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 

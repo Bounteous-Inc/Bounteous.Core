@@ -4,7 +4,7 @@ using Bounteous.Core.Extensions;
 using Bounteous.Core.Utilities.Mapper;
 using Bounteous.Core.Utilities.Mapper.Converter;
 using Bounteous.Core.Validations;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 using static Bounteous.Core.Time.Clock;
 

@@ -1,6 +1,6 @@
 using Bounteous.Core.DI;
 using Bounteous.Core.TestSupport;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

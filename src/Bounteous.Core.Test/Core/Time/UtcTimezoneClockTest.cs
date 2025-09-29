@@ -1,7 +1,7 @@
 using System;
+using AwesomeAssertions;
 using Bounteous.Core.Extensions;
 using Bounteous.Core.Time;
-using FluentAssertions;
 
 namespace Bounteous.Core.Test.Core.Time
 {

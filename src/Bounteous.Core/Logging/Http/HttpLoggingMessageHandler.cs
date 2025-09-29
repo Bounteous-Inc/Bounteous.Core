@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using Bounteous.Core.Extensions;
 using Serilog;
 
 namespace Bounteous.Core.Logging.Http;
@@ -20,7 +21,7 @@ public class HttpLoggingMessageHandler : DelegatingHandler
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
-        var id = Guid.NewGuid().ToString();
+        var id = Guid.NewGuid().ToString().ToJson();
         var msg = $"[{id} - Request]";
 
         Log.Information("{Message}========Start==========", msg);

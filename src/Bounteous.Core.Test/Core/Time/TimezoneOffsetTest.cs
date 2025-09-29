@@ -1,6 +1,6 @@
 using System;
+using AwesomeAssertions;
 using Bounteous.Core.Time;
-using FluentAssertions;
 using Xunit;
 
 namespace Bounteous.Core.Test.Core.Time

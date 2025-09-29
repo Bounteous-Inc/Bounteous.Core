@@ -1,6 +1,6 @@
 using System;
+using AwesomeAssertions;
 using Bounteous.Core.Validations;
-using FluentAssertions;
 using Xunit;
 
 namespace Bounteous.Core.Test.Core.Validations

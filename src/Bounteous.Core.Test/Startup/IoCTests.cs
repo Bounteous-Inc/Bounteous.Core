@@ -1,7 +1,7 @@
 using System;
 using Bounteous.Core.TestSupport;
 using Bounteous.Core.Validations;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using Xunit;

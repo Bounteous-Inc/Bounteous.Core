@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using AwesomeAssertions;
 using Bounteous.Core.Extensions;
 using Bounteous.Core.Validations;
-using FluentAssertions;
 using Xunit;
 
 // ReSharper disable InconsistentNaming

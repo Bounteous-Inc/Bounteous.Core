@@ -1,6 +1,6 @@
 using Bounteous.Core.Extensions;
-using Bounteous.Core.Test.Factories;
 using Bounteous.Core.Test.Model;
+using Bounteous.Core.Test.Factories;
 using Bounteous.Core.Validations;
 using Xunit;
 

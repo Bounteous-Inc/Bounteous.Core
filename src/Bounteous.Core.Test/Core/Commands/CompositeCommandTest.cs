@@ -1,5 +1,5 @@
+using AwesomeAssertions;
 using Bounteous.Core.Extensions;
-using FluentAssertions;
 using Xunit;
 
 namespace Bounteous.Core.Test.Core.Commands

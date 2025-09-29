@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Bounteous.Core.Utilities;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace Bounteous.Core.Test.Utilities

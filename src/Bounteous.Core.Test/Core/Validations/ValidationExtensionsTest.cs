@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Bounteous.Core.Test.Model;
 using Bounteous.Core.Validations;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace Bounteous.Core.Test.Core.Validations
@@ -14,7 +14,6 @@ namespace Bounteous.Core.Test.Core.Validations
     public class ValidationExtensionsTest
     {
         private const string ValidationMessage = "Should not be empty";
-
         [Fact]
         public void Check_MultipleErrors()
         {

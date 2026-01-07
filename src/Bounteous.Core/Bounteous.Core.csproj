@@ -8,7 +8,7 @@
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <LangVersion>latest</LangVersion>
         <PackageReadmeFile>docs/README.md</PackageReadmeFile>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <AssemblyName>Bounteous.Core</AssemblyName>
         <RootNamespace>Bounteous.Core</RootNamespace>
     </PropertyGroup>
@@ -29,8 +29,6 @@
         <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.0" />
         <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
         <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
-        <PackageReference Include="System.IO.FileSystem" Version="4.3.0"/>
-        <PackageReference Include="System.Text.Json" Version="10.0.1" />
     </ItemGroup>
 
     <ItemGroup>

@@ -11,6 +11,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <AssemblyName>Bounteous.Core</AssemblyName>
         <RootNamespace>Bounteous.Core</RootNamespace>
+        <LicenseExpression>MIT</LicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>

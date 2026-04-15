@@ -2,16 +2,16 @@
 
     <PropertyGroup>
         <PackageId>Bounteous.Core</PackageId>
-        <Version>0.0.18</Version>
+        <Version>0.0.21</Version>
         <Authors>Bounteous</Authors>
-        <Company>Xerris Inc.</Company>
+        <Company>Bounteous</Company>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <LangVersion>latest</LangVersion>
         <PackageReadmeFile>docs/README.md</PackageReadmeFile>
         <TargetFramework>net10.0</TargetFramework>
         <AssemblyName>Bounteous.Core</AssemblyName>
         <RootNamespace>Bounteous.Core</RootNamespace>
-        <LicenseExpression>MIT</LicenseExpression>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>

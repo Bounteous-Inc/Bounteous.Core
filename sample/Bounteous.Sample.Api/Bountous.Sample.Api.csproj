@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="Serilog" Version="4.3.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.1" />
     </ItemGroup>
 
     <ItemGroup>

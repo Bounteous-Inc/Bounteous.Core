@@ -4,7 +4,7 @@ using Bounteous.Core.Serialization;
 using Bounteous.Core.Time;
 using Bounteous.Core.Utilities;
 using Bounteous.Core.Validations;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using Xunit;
 
 namespace Bounteous.Core.Test.Serialization
